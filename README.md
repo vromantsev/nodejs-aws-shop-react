@@ -1,3 +1,6 @@
+CloudFront URL - http://d3ewwnk5pnu18r.cloudfront.net/
+S3 static website URL - http://serving-sp-app-rs-school-v1.s3-website.eu-north-1.amazonaws.com
+
 # React-shop-cloudfront
 
 This is frontend starter project for nodejs-aws mentoring program. It uses the following technologies:
