@@ -1,4 +1,5 @@
-CloudFront URL - http://d3ewwnk5pnu18r.cloudfront.net/
+CloudFront URL - https://d262msk9enmcj6.cloudfront.net
+
 S3 static website URL - http://serving-sp-app-rs-school-v1.s3-website.eu-north-1.amazonaws.com
 
 # React-shop-cloudfront
