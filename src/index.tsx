@@ -8,6 +8,21 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
 
+const fetchInterceptor = window.fetch;
+window.fetch = (...args) =>
+  fetchInterceptor(...args).then((response) => {
+    console.log("response", response);
+    switch (response.status) {
+      case 401:
+        alert("Unauthorized access");
+        break;
+      case 403:
+        alert("Forbidden");
+        break;
+    }
+    return response;
+  });
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: { refetchOnWindowFocus: false, retry: false, staleTime: Infinity },

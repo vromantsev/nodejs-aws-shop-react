@@ -29,6 +29,11 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
       if (!file) {
         throw new Error("No file selected");
       }
+
+      const storedToken = localStorage.getItem("authorization_token");
+      const headers = {
+        ...(storedToken && { Authorization: `Basic ${storedToken}` }),
+      };
       // Get the presigned URL
       const response = await axios({
         method: "GET",
@@ -36,7 +41,9 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
         params: {
           name: encodeURIComponent(file.name),
         },
+        headers,
       });
+
       console.log("File to upload: ", file.name);
       console.log("Uploading to: ", response.data);
       const result = await fetch(response.data, {
@@ -48,22 +55,6 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
     } catch (error) {
       console.error("There was an error uploading the file", error);
     }
-    // Get the presigned URL
-    // const response = await axios({
-    //   method: "GET",
-    //   url,
-    //   params: {
-    //     name: encodeURIComponent(file.name),
-    //   },
-    // });
-    // console.log("File to upload: ", file.name);
-    // console.log("Uploading to: ", response.data);
-    // const result = await fetch(response.data, {
-    //   method: "PUT",
-    //   body: file,
-    // });
-    // console.log("Result: ", result);
-    // setFile("");
   };
 
   const uploadInputRef = useRef<HTMLInputElement | null>(null);
